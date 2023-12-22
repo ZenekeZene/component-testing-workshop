@@ -4,7 +4,7 @@ We are using `node>18`.
 
 ### Installation
 ```
-npm run install
+npm install
 ```
 
 ### Testing
