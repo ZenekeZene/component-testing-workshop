@@ -24,13 +24,20 @@ const MyTodoFeed = ({ items, removeItem }) => (
 
 const MyTodo = () => {
 	const [text, setText] = React.useState('');
-	const [items, setItems] = React.useState([]);
+	const [items, setItems] = React.useState(() => {
+		const items = localStorage.getItem('items');
+		if (items) {
+			return JSON.parse(items);
+		}
+		return [];
+	});
 
 	const updateText = (e) => {
 		setText(e.target.value);
 	};
 
 	const addItem = () => {
+		setText('');
 		setItems(oldItems => [...oldItems, { name: text }]);
 	};
 
@@ -42,6 +49,10 @@ const MyTodo = () => {
 
 	const clear = () => {
 		setItems([]);
+	};
+
+	const save = () => {
+		localStorage.setItem('items', JSON.stringify(items));
 	};
 
 	return (
@@ -58,9 +69,11 @@ const MyTodo = () => {
 
 			{ /* Controls */ }
 			<p>Número total de items: {items.length}</p>
-			<input type="text" onChange={updateText} />
+			<input type="text" value={text} onChange={updateText} />
 			<button onClick={addItem} disabled={text.length === 0}>Add item</button>
 			<button onClick={clear} disabled={items.length === 0}>Clear</button>
+
+			<button onClick={save}>Save</button>
 		</>
 	);
 };
