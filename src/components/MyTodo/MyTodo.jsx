@@ -68,7 +68,7 @@ const MyTodo = () => {
 			/>)}
 
 			{ /* Controls */ }
-			<p>Número total de items: {items.length}</p>
+			<p>Total items: {items.length}</p>
 			<input type="text" value={text} onChange={updateText} />
 			<button onClick={addItem} disabled={text.length === 0}>Add item</button>
 			<button onClick={clear} disabled={items.length === 0}>Clear</button>
