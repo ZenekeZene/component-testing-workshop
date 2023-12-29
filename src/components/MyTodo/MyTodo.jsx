@@ -3,7 +3,7 @@ import './MyTodo.scss';
 
 const MyTodoItem = ({ item, removeItem }) => (
 	<li className="my-todo__item">
-		<div>{ item.name }</div>
+		{ item.name }
 		<button onClick={removeItem}>Delete</button>
 	</li>
 );
